@@ -3,65 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="img/favicon.png">
-    <title>迷克夏</title>
+    <title>Oops! | 迷克夏</title>
     <style>
         body{
-            display: flex;
-            background-image: url("img/background.png");
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+        }
+
+        .header {
+            height: clamp(50px, 5vh, 200px);
+            width: 100%;
+            position: sticky;
+            background-color: white;
+            top: 0;
+
+            .logo {
+                margin: 5px;
+            }
         }
 
         .container {
             display: flex;
-            position: relative;
-            width: clamp(300px, 60%, 1200px);
-            height: 40vh;
-            border-radius: 50px;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: rgba(79, 125, 37, 0.5);
-            padding: 5vw;
+            height: 95vh;
+            margin: 0;
+            background-image: url("img/background.png");
+
+            .message {
+                display: flex;
+                position: relative;
+                width: clamp(300px, 60%, 1200px);
+                height: 40vh;
+                border-radius: 50px;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: rgba(79, 125, 37, 0.5);
+                padding: 5vw;
+
+                .title {
+                    color: transparent;
+                    font-size: 10vw;
+                    margin: 1vh;
+                    background-image: url("img/grass.png");
+                    background-clip: text;
+                }
+
+                .subtitle {
+                    color: white;
+                }
+
+                .description {
+                    color: white;
+                }
+            }
         }
 
-        .title {
-            color: transparent;
-            font-size: 10vw;
-            margin: 1vh;
-            background-image: url("img/grass.png");
-            background-clip: text;
-        }
-
-        .subtitle {
+        .footer {
+            background-color: #3d3d3d;
+            height: 10vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             color: white;
-        }
 
-        .description {
-            color: white;
+            .information {
+                text-align: center;
+            }
         }
 
     </style>
 </head>
 <body>
     <div class="header">
-
+        <img src="img/logo_h.png" alt="logo" class="logo">
     </div>
     <div class="container">
-        <h1 class="title" >
-            Moops!
-        </h1>
-        <h2 class="subtitle">
-            似乎出了點小問題…
-        </h2>
-        <h3 class="description">
-            看來有一隻乳牛從綠光牧場內跑走了! 等等再回來看看吧
-        </h3>
+        <div class="message">
+            <h1 class="title" >
+                Moops!
+            </h1>
+            <h2 class="subtitle">
+                似乎出了點小問題…
+            </h2>
+            <h3 class="description">
+                看來有一隻乳牛從綠光牧場內跑走了! 等等再回來看看吧
+            </h3>
+        </div>
     </div>
     <div class="footer">
-
+        <img src="img/footer_logo.png" alt="footer logo">
+        <div class="footer-content">
+            <p class="information">TEL：+886-6-2818569 │ FAX：+886-6-2819569 │ E-mail：</p>
+            <p class="copyright">Copyright © 2018 milkshop All Rights Reserves.</p>
+        </div>
     </div>
 </body>
 </html>
