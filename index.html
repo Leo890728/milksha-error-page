@@ -28,6 +28,7 @@
             height: 95vh;
             margin: 0;
             background-image: url("img/background.png");
+            background-size: cover;
 
             .message {
                 display: flex;
@@ -40,6 +41,19 @@
                 align-items: center;
                 background-color: rgba(79, 125, 37, 0.5);
                 padding: 5vw;
+                text-align: center;
+
+                .milk {
+                    position: absolute;
+                    width: clamp(300px, 80vw, 1600px);
+                }
+
+                .cow {
+                    position: absolute;
+                    width: clamp(120px, 20%, 1200px);
+                    bottom: 0;
+                    right: 0;
+                }
 
                 .title {
                     color: transparent;
@@ -47,6 +61,7 @@
                     margin: 1vh;
                     background-image: url("img/grass.png");
                     background-clip: text;
+                    z-index: 1;
                 }
 
                 .subtitle {
@@ -80,6 +95,7 @@
     </div>
     <div class="container">
         <div class="message">
+            <img class="milk" src="img/milk_bg.png" alt="milk bg">
             <h1 class="title" >
                 Moops!
             </h1>
@@ -89,6 +105,7 @@
             <h3 class="description">
                 看來有一隻乳牛從綠光牧場內跑走了! 等等再回來看看吧
             </h3>
+            <img src="img/cow01.png" alt="cow" class="cow">
         </div>
     </div>
     <div class="footer">
