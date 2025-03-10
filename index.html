@@ -59,7 +59,7 @@
             bottom: 0;
             right: 0;
             cursor: pointer;
-            transition: transform 0.5s;
+            transition: all 0.5s;
             z-index: 1;
         }
 
@@ -91,7 +91,6 @@
             justify-content: center;
             align-items: center;
             color: white;
-
         }
         .information {
             text-align: center;
@@ -144,7 +143,7 @@
             <h3 class="description">
                 看來有一隻乳牛從綠光牧場內跑走了! 等等再回來看看吧
             </h3>
-            <img src="img/cow01.png" alt="cow" class="cow" onclick="spawnDrinkAnimation()">
+            <img src="img/cow01.png" alt="cow" class="cow" onclick="spawnDrinkAnimation(); cowAnimation()">
         </div>
     </div>
     <div class="footer">
@@ -155,6 +154,16 @@
         </div>
     </div>
     <script>
+        function cowAnimation() {
+            const cowElm = document.querySelector('.cow');
+            cowElm.style.scale = "1.1";
+            cowElm.style.transform = Math.random() > 0.5 ? "rotate(-10deg)" : "rotate(10deg)";
+            setTimeout(() => {
+                cowElm.style.scale = "1";
+            }, 100)
+            window.navigator.vibrate(200);
+        }
+
         function spawnDrinkAnimation() {
             const elm = document.createElement("img");
 
