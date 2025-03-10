@@ -49,7 +49,7 @@
         }
         .milk {
             position: absolute;
-            width: clamp(450px, 80vw, 1600px);
+            width: 80vw;
             z-index: 1;
         }
 
@@ -100,6 +100,9 @@
             .message {
                 width: 70%;
             }
+            .milk {
+                width: 1400px;
+            }
         }
         @media (max-width: 992px) {
             .message {
@@ -110,6 +113,9 @@
             }
             .subtitle {
                 font-size: 30px;
+            }
+            .milk {
+                width: 1200px;
             }
         }
         @media (max-width: 768px) {
@@ -123,6 +129,9 @@
             .subtitle {
                 font-size: 25px;
             }
+            .milk {
+                width: 1000px;
+            }
         }
 
     </style>
@@ -134,7 +143,7 @@
     <div class="container">
         <div class="message">
             <img class="milk" src="img/milk_bg.png" alt="milk bg">
-            <h1 class="title" >
+            <h1 class="title">
                 Moops!
             </h1>
             <h2 class="subtitle">
