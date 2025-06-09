@@ -57,11 +57,13 @@
             box-shadow: 0 6px 2px -2px rgba(0, 0, 0, 0.2);
             top: auto !important;
             left: auto !important;
+            transition: 0.5s filter;
         }
         .milk {
             position: absolute;
             width: 80vw;
             z-index: 1;
+            transition: 0.5s filter;
         }
 
         .cow {
@@ -225,6 +227,7 @@
         #contact-form h2 {
             color: white;
             margin-top: 0px;
+            cursor: pointer;
         }
 
         input, textarea {
@@ -401,6 +404,10 @@
                 event.preventDefault();
                 closeContactForm();
             });
+
+            document.querySelector("#contact-form h2").addEventListener('click', function() {
+                testContactFormData();
+            });
     
             document.querySelector('.cow').addEventListener('click', function() {
                 if (contactFormFliper.style.top === '50%') {
@@ -449,21 +456,31 @@
             });
         }
 
+        function testContactFormData() {
+            const testData = {
+                name: "使用者",
+                email: "example@domain.com",
+                message: "這是一個測試訊息。"
+            };
+            contactForm.querySelector('input[name="name"]').value = testData.name;
+            contactForm.querySelector('input[name="email"]').value = testData.email;
+            contactForm.querySelector('textarea[name="message"]').value = testData.message;
+        }
 
         function openContactForm() {
             contactFormFliper.style.top = '50%';
             contactFormFliper.classList.remove('flipping');
 
-            document.querySelector('.message').style.transform = "blur(5px)";
-            document.querySelector('.milk').style.transform = "blur(5px)";
+            document.querySelector('.message').style.filter = "blur(5px)";
+            document.querySelector('.milk').style.filter = "blur(5px)";
         }
 
         function closeContactForm() {
             contactFormFliper.style.top = '-50%';
             contactFormFliper.classList.remove('flipping');
 
-            document.querySelector('.message').style.transform = "blur(0px)";
-            document.querySelector('.milk').style.transform = "blur(0px)";
+            document.querySelector('.message').style.filter = "blur(0px)";
+            document.querySelector('.milk').style.filter = "blur(0px)";
         }
 
         function clearContactForm() {
