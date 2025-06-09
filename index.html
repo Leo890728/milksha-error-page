@@ -41,15 +41,13 @@
             margin: 0;
             background-image: url("img/background.png");
             background-size: cover;
+            overflow-x: hidden;
         }
         .message {
-            display: flex;
             position: relative;
             width: 60%;
-            height: 40vh;
+            height: 30vh;
             border-radius: 50px;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
             background-color: rgba(79, 125, 37, 0.5);
             padding: 5vw;
@@ -272,28 +270,6 @@
             font-weight: bolder;
         }
 
-        @media (max-width: 1200px) {
-            .message {
-                width: 70%;
-            }
-            .milk {
-                width: 1400px;
-            }
-        }
-        @media (max-width: 992px) {
-            .message {
-                width: 80%;
-            }
-            .title {
-                font-size: 125px;
-            }
-            .subtitle {
-                font-size: 30px;
-            }
-            .milk {
-                width: 1200px;
-            }
-        }
         @media (max-width: 768px) {
             .message {
                 width: 90%;
@@ -314,6 +290,29 @@
             }
         }
 
+        @media (max-width: 992px) {
+            .message {
+                width: 80%;
+            }
+            .title {
+                font-size: 125px;
+            }
+            .subtitle {
+                font-size: 30px;
+            }
+            .milk {
+                width: 1200px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .message {
+                width: 70%;
+            }
+            .milk {
+                width: 1400px;
+            }
+        }
     </style>
 </head>
 <body>
