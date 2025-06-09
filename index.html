@@ -3,10 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="img/favicon.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
     <title>Oops! | 迷克夏</title>
     <style>
+        @font-face {
+            font-family: 'Iansui';
+            src: url('font/Iansui-Regular.ttf');
+        }
+
         body{
             margin: 0;
+            overflow-x: hidden;
         }
 
         .header {
@@ -31,7 +41,6 @@
             margin: 0;
             background-image: url("img/background.png");
             background-size: cover;
-
         }
         .message {
             display: flex;
@@ -46,6 +55,8 @@
             padding: 5vw;
             text-align: center;
             box-shadow: 0 6px 2px -2px rgba(0, 0, 0, 0.2);
+            top: auto !important;
+            left: auto !important;
         }
         .milk {
             position: absolute;
@@ -56,11 +67,31 @@
         .cow {
             position: absolute;
             width: clamp(160px, 20%, 1200px);
-            bottom: 0;
-            right: 0;
-            cursor: pointer;
-            transition: all 0.5s;
+            bottom: 0 !important;
+            right: 0 !important;
+            top: auto !important;
+            left: auto !important;
+            margin: 50px;
             z-index: 1;
+
+            img {
+                transition: all 0.5s;
+            }
+        }
+
+        #cow-message {
+            position: absolute;
+            left: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 10px 10px 0 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            font-size: 16px;
+            white-space: nowrap;
+            transition: left 0.15s;
         }
 
         .title {
@@ -94,6 +125,148 @@
         }
         .information {
             text-align: center;
+        }
+
+        .fliper {
+            position: absolute;
+            left: 50%;
+            top: -50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 500px;
+            transition: transform 0.5s ease-in-out, top 0.5s ease-in-out;
+            /* backface-visibility: hidden; */
+        }
+
+        .fliper .fliper-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flipping .fliper-inner {
+            transform: rotateY(180deg);
+        }
+
+        .fliper-front, .fliper-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .fliper-front{
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(15px);
+            background-image: url(img/background.png);
+            background-color: rgba(79, 125, 37, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .fliper-back {
+            transform: rotateY(180deg);
+            /* writing-mode: sideways-lr; */
+            border-radius: 10px;
+            background-image: url(img/grass.png);
+        }
+
+        .fliper-back-content {
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(1px);
+
+            h1, h2 {
+                margin-top: 10px;
+                color: white;
+                text-align: left;
+                font-family: Iansui, sans-serif;
+            }
+
+            .stamp {
+                position: absolute;
+                bottom: 50px;
+                right: 50px;
+                height: auto;
+                object-fit: contain;
+            }
+
+            .letter-content {
+                width: 80%;
+                padding: 5px;
+                text-wrap: wrap;
+            }
+        }
+
+        .fliper-back img {
+            width: 30%;
+            height: 30%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        #close-contact-form {
+            position: absolute;
+            right: 20px;
+            font-size: larger;
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+            border: none;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+
+        #contact-form h2 {
+            color: white;
+            margin-top: 0px;
+        }
+
+        input, textarea {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: transparent;
+            transition: all 0.3s ease;
+            color: white;
+            resize: none;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: white;
+        }
+
+        input:focus, textarea:focus {
+            border-color: rgb(79, 125, 37);
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        #contact-form button[type="submit"] {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #contact-form button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #contact-form label {
+            margin-bottom: 5px;
+            color: white;
+            font-weight: bolder;
         }
 
         @media (max-width: 1200px) {
@@ -132,6 +305,10 @@
             .milk {
                 width: 1000px;
             }
+            #cow-message {
+                width: 200px;
+                text-wrap: wrap;
+            }
         }
 
     </style>
@@ -140,9 +317,10 @@
     <div class="header">
         <img src="img/logo_h.png" alt="logo" class="logo">
     </div>
-    <div class="container">
-        <div class="message">
-            <img class="milk" src="img/milk_bg.png" alt="milk bg">
+
+    <div class="container" id="scene">
+        <img class="milk" src="img/milk_bg.png" alt="milk bg" data-depth="0.1">
+        <div class="message"  data-depth="0.2">
             <h1 class="title">
                 Moops!
             </h1>
@@ -152,9 +330,12 @@
             <h3 class="description">
                 看來有一隻乳牛從綠光牧場內跑走了! 等等再回來看看吧
             </h3>
-            <img src="img/cow01.png" alt="cow" class="cow" onclick="spawnDrinkAnimation(); cowAnimation()">
         </div>
+        <span class="cow" data-depth="0.1">
+            <img src="img/cow01.png" alt="cow" style="cursor: pointer;" onclick="cowAnimation()" >
+        </span>
     </div>
+    
     <div class="footer">
         <img src="img/footer_logo.png" alt="footer logo">
         <div class="footer-content">
@@ -162,11 +343,165 @@
             <p class="copyright">Copyright © 2018 milkshop All Rights Reserves.</p>
         </div>
     </div>
+
+    <div class="fliper">
+        <div class="fliper-inner">
+            <form class="fliper-front" id="contact-form">
+                <button id="close-contact-form">✕</button>
+                <h2>聯絡我們</h2>
+                <input type="text" name="title" value="迷克夏聯絡訊息" hidden>
+                <label for="name">你的名字 <span style="color: rgb(200, 30, 30);">*</span></label>
+                <input type="text" name="name" placeholder="名字" required>
+                <label for="email">你的信箱 <span style="color: rgb(200, 30, 30);">*</span></label>
+                <input type="email" name="email" placeholder="信箱" required>
+                <label for="message">訊息內容 <span style="color: rgb(200, 30, 30);">*</span></label>
+                <textarea name="message" placeholder="訊息" rows="5" required></textarea>
+                <button type="submit">寄信</button>
+            </form>
+            <div class="fliper-back">
+                <div class="fliper-back-content">
+                    <h1>To 綠光農場</h1>
+                    <h2 class="letter-sender">寄件者: <span></span></h2>
+                    <img class="stamp" src="img/stamp.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <script>
-        function cowAnimation() {
+        const contactFormFliper = document.querySelector('.fliper');
+        const contactForm = document.querySelector('#contact-form')
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            registerEventListeners();
+
+            var scene = document.getElementById('scene');
+            var parallaxInstance = new Parallax(scene, {
+                pointerEvents: true,
+            });
+
+            emailjs.init({
+                publicKey: "KpZSlFKm6x0ffTKGs",
+                limitRate: {
+                    id: 'app',
+                    throttle: 10000,
+                },
+            });
+
+            cowTalking("似乎出了點小問題…");
+            setTimeout(() => {
+                cowTalking("點我聯絡我們的客服人員，或許能幫助你解決問題！");
+            }, 2000);
+        });
+
+        function registerEventListeners() {
+
+            document.querySelector('#close-contact-form').addEventListener('click', function(event) {
+                event.preventDefault();
+                closeContactForm();
+            });
+    
+            document.querySelector('.cow').addEventListener('click', function() {
+                if (contactFormFliper.style.top === '50%') {
+                    closeContactForm();
+                } else {
+                    openContactForm();
+                }
+            });
+
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const name = contactForm.querySelector('input[name="name"]').value;
+                document.querySelector('.fliper-back-content .letter-sender span').textContent = name;
+
+                contactFormFliper.classList.add('flipping');
+                contactForm.querySelector('button[type="submit"]').disabled = true;
+                cowTalking("請稍等片刻，訊息正在送往牧場中…");
+
+                setTimeout(() => {
+                    emailjs.sendForm('service_d5bq4zo', 'template_hu5wh8v', contactForm)
+                    .then(function(response) {
+                        cowTalking('訊息幫你寄到牧場了！牧場人員會盡快回覆你。');
+                        setTimeout(() => {  
+                            clearContactForm();
+                        }, 2000);
+                        console.log('成功:', response.status, response.text);
+                    }, function(error) {
+                        cowTalking('看來牧場的信箱沒空間了...');
+                        setTimeout(() => {
+                            cowTalking("之後再試試吧！");
+                        }, 2000);
+                        clearContactForm();
+                        console.log('失敗:', error);
+                    });
+                }, 2000);
+                
+                setTimeout(() => {
+                    for (i = 0; i < 30; i++) {
+                        setTimeout(() => {
+                            spawnDrinkAnimation();
+                        }, i * 50);
+                    }
+                    closeContactForm();
+                }, 1500);
+            });
+        }
+
+
+        function openContactForm() {
+            contactFormFliper.style.top = '50%';
+            contactFormFliper.classList.remove('flipping');
+
+            document.querySelector('.message').style.transform = "blur(5px)";
+            document.querySelector('.milk').style.transform = "blur(5px)";
+        }
+
+        function closeContactForm() {
+            contactFormFliper.style.top = '-50%';
+            contactFormFliper.classList.remove('flipping');
+
+            document.querySelector('.message').style.transform = "blur(0px)";
+            document.querySelector('.milk').style.transform = "blur(0px)";
+        }
+
+        function clearContactForm() {
+            contactForm.querySelector('input[name="name"]').value = "";
+            contactForm.querySelector('input[name="email"]').value = "";
+            contactForm.querySelector('textarea[name="message"]').value = "";
+            contactForm.querySelector('button[type="submit"]').disabled = false;
+        }
+
+        function cowTalking(message) {
             const cowElm = document.querySelector('.cow');
+
+            let messageElm = document.querySelector('#cow-message');
+            messageElm = messageElm == null ? document.createElement('span') : messageElm;
+            messageElm.id = 'cow-message';
+            messageElm.textContent = "";
+            messageElm.style.left = `${-messageElm.offsetWidth}px`;
+            messageElm.style.top = `${cowElm.offsetHeight*0.3}px`;
+
+            window.addEventListener('resize', () => {
+                messageElm.style.left = `${-messageElm.offsetWidth-15}px`;
+                messageElm.style.top = `${cowElm.offsetHeight*0.3}px`;
+            });
+
+            for (let i = 0; i < message.length; i++) {
+                setTimeout(() => {
+                    messageElm.textContent += message[i];
+                    messageElm.style.left = `${-messageElm.offsetWidth-15}px`;
+                }, i * 75);
+            }
+            cowElm.appendChild(messageElm);
+            return messageElm
+        }
+
+        function cowAnimation() {
+            const cowElm = document.querySelector('.cow img');
             cowElm.style.scale = "1.1";
-            cowElm.style.transform = Math.random() > 0.5 ? "rotate(-10deg)" : "rotate(10deg)";
+            cowElm.style.transform = Math.random() > 0.5 ? "rotate(10deg)" : "rotate(0deg)";
             setTimeout(() => {
                 cowElm.style.scale = "1";
             }, 100)
