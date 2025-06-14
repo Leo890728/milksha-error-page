@@ -372,7 +372,8 @@
     
     <script>
         const contactFormFliper = document.querySelector('.fliper');
-        const contactForm = document.querySelector('#contact-form')
+        const contactForm = document.querySelector('#contact-form');
+        const talkTasks = [];
 
         document.addEventListener('DOMContentLoaded', function() {
 
@@ -445,7 +446,7 @@
                 }, 2000);
                 
                 setTimeout(() => {
-                    for (i = 0; i < 30; i++) {
+                    for (let i = 0; i < 30; i++) {
                         setTimeout(() => {
                             spawnDrinkAnimation();
                         }, i * 50);
@@ -492,6 +493,10 @@
         function cowTalking(message) {
             const cowElm = document.querySelector('.cow');
 
+            talkTasks.forEach(task => {
+                clearTimeout(task);
+            });
+
             let messageElm = document.querySelector('#cow-message');
             messageElm = messageElm == null ? document.createElement('span') : messageElm;
             messageElm.id = 'cow-message';
@@ -505,13 +510,12 @@
             });
 
             for (let i = 0; i < message.length; i++) {
-                setTimeout(() => {
+                talkTasks.push(setTimeout(() => {
                     messageElm.textContent += message[i];
                     messageElm.style.left = `${-messageElm.offsetWidth-15}px`;
-                }, i * 75);
+                }, i * 75));
             }
             cowElm.appendChild(messageElm);
-            return messageElm
         }
 
         function cowAnimation() {
